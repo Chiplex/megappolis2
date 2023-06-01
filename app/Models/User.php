@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Core\Entities\Role;
+use Modules\Core\Entities\App;
+use Modules\Core\Entities\People;
 
 class User extends Authenticatable
 {
@@ -42,4 +45,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'roles_users');
+    }
+
+    /**
+     * Get the apps for the user.
+     */
+    public function apps()
+    {
+        return $this->hasMany(App::class);
+    }
+
+    /**
+     * Get the people associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function people()
+    {
+        return $this->belongsTo(People::class);
+    }
 }
