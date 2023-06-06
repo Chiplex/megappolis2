@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 //use Illuminate\Routing\Controller;
 use App\Http\Controllers\Controller;
 
-class CoreController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
